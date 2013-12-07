@@ -34,7 +34,7 @@ class Robot(object):
         return self.location[1]
     
     def stagger(self, game):
-        x,y = [self.up, self.down, self.right, self.left][random.randint(0,4)]
+        x,y = [self.up, self.down, self.right, self.left][random.randint(0,3)]
         return ['move', (x,y)]
     
     def fall_down(self, game):
@@ -47,7 +47,7 @@ class Robot(object):
             if bot and bot.player_id != self.player_id:
                 targets.append(bot)
         if not targets:
-            return stagger(game)
+            return self.stagger(game)
         target = min(targets, key=lambda x: x['hp'])
         return ['attack', target['location']]
         
